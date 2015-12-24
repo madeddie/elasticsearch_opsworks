@@ -18,7 +18,7 @@ end
 # Run container exposing ports
 docker_container 'logstash' do
   container_name 'logstash'
-  host_name node[:hostname]
+  host_name node['hostname']
   tag node['logstash_version']
   detach true
   port ['5043:5043', '5959:5959']

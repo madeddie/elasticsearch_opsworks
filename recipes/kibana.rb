@@ -19,10 +19,9 @@ end
 # Run container exposing ports
 docker_container 'kibana' do
   container_name 'kibana'
-  host_name node[:hostname]
+  host_name node['hostname']
   repo node['kibana_image']
   tag node['kibana_version']
-  # image 'kibana:4.1'
   detach true
   port '5601:5601'
   env 'ELASTICSEARCH_URL=http://172.17.0.1:9200'
