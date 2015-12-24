@@ -1,0 +1,13 @@
+name 'elasticsearch_opsworks'
+maintainer 'Edwin Hermans'
+maintainer_email 'edwin@madtech.cx'
+license 'All rights reserved'
+description 'Installs/Configures elasticsearch-opsworks'
+long_description 'Installs/Configures elasticsearch-opsworks'
+version '0.1.0'
+
+depends 'apt', '~> 2.9.2'
+depends 'docker', '~> 2.3.19'
+depends 'elasticsearch', '~> 2.1.0'
+depends 'java', '~> 1.36.0'
+depends 'nginx', '~> 2.7.6'

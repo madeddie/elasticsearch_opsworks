@@ -1,0 +1,83 @@
+---
+driver:
+  name: ec2
+  aws_ssh_key_id: <%= ENV['EC2_SSH_KEY_NAME'] %>
+  iam_profile_name: <%= ENV['EC2_ROLE'] %>
+  region: <%= ENV['EC2_REGION'] %>
+  availability_zone: <%= ENV['EC2_AVAILABILITY_ZONE'] %>
+  subnet_id: <%= ENV['EC2_SUBNET'] %>
+  require_chef_omnibus: 12.5.1
+  associate_public_ip: true
+  instance_type: t2.small
+  security_group_ids:
+    - <%= ENV['EC2_SECURITY_GROUP'] %>
+  tags:
+    created-by: test-kitchen
+    Name: elasticsearch_test
+
+transport:
+  ssh_key: <%= ENV['EC2_SSH_KEY_FILE'] %>
+  username: ubuntu
+
+platforms:
+  - name: trusty
+    driver:
+      image_search:
+        name: ubuntu/images/hvm/ubuntu-trusty-14.04-amd64-server-*
+    run_list: 
+      - recipe[elasticsearch_opsworks::default]
+    attributes: 
+      enable_kibana: true
+      elasticsearch:
+        cluster_name: 'test-kitchen'
+        instance_count: 2
+
+suites:
+  - name: elastic-17-1
+    driver:
+      tags:
+        'opsworks:stack': 'elastic-17'
+    attributes:
+      elasticsearch:
+        version: '1.7.3'
+        stack_name: 'elastic-17'
+  - name: elastic-17-2
+    driver:
+      tags:
+        'opsworks:stack': 'elastic-17'
+    attributes:
+      elasticsearch:
+        version: '1.7.3'
+        stack_name: 'elastic-17'
+  - name: elastic-20-1
+    driver:
+      tags:
+        'opsworks:stack': 'elastic-20'
+    attributes:
+      elasticsearch:
+        version: '2.0.1'
+        stack_name: 'elastic-20'
+  - name: elastic-20-2
+    driver:
+      tags:
+        'opsworks:stack': 'elastic-20'
+    attributes:
+      elasticsearch:
+        version: '2.0.1'
+        stack_name: 'elastic-20'
+  - name: elastic-21-1
+    driver:
+      tags:
+        'opsworks:stack': 'elastic-21'
+    attributes:
+      elasticsearch:
+        version: '2.1.0'
+        stack_name: 'elastic-21'
+  - name: elastic-21-2
+    driver:
+      tags:
+        'opsworks:stack': 'elastic-21'
+    attributes:
+      elasticsearch:
+        version: '2.1.0'
+        stack_name: 'elastic-21'

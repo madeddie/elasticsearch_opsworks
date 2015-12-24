@@ -1,0 +1,34 @@
+---
+driver:
+  name: vagrant
+  provision: true
+  vagrantfiles:
+    - vagrant.rb
+  customize:
+    memory: 1024
+  network:
+    - ["forwarded_port", {guest: 80, host: 8080}]
+    - ["forwarded_port", {guest: 5601, host: 5601}]
+    - ["forwarded_port", {guest: 9200, host: 9200}]
+    - ["forwarded_port", {guest: 9300, host: 9300}]
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: false
+
+platforms:
+  - name: ubuntu-14.04
+
+suites:
+  - name: default
+    run_list:
+      - recipe[elasticsearch_opsworks::default]
+    attributes:
+      enable_kibana: true
+      elasticsearch:
+        version: '2.1.1'
+        cluster_name: 'test-kitchen'
+        instance_count: 1
+        stack_name: 'elastic'
+      ec2:
+        placement_availability_zone: 'eu-west-1a'

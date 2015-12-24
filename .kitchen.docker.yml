@@ -1,0 +1,29 @@
+---
+driver:
+  name: docker
+  provision_command: curl -L https://www.chef.io/chef/install.sh | sudo bash -s -- -v 12.5.1
+  forward:
+    - 80:80
+    - 5601:5601
+    - 9200:9200
+    - 9300:9300
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: false
+
+platforms:
+  - name: ubuntu-14.04
+
+suites:
+  - name: default
+    run_list:
+      - recipe[elasticsearch_opsworks::default]
+    attributes:
+      elasticsearch:
+        version: '2.1.1'
+        cluster_name: 'test-kitchen'
+        instance_count: 1
+        stack_name: 'elastic'
+      ec2:
+        placement_availability_zone: 'eu-west-1a'
