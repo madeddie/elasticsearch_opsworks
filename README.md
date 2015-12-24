@@ -1,10 +1,12 @@
-# elasticsearch-opsworks-cookbook
+# elasticsearch_opsworks
 
-TODO: Enter the cookbook description here.
+Installs ElasticSearch. Specifically to be used within an OpsWorks stack on AWS.
 
 ## Supported Platforms
 
-TODO: List your supported platforms.
+Tested on:
+
+ - ubuntu 14.04
 
 ## Attributes
 
@@ -16,27 +18,51 @@ TODO: List your supported platforms.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['elasticsearch-opsworks']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>['elasticsearch']['version']</tt></td>
+    <td>String</td>
+    <td>ElasticSearch version</td>
+    <td><tt>1.7.3</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['elasticsearch']['cluster_name']</tt></td>
+    <td>String</td>
+    <td>Name of ElasticSearch cluster</td>
+    <td><tt>empty</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['elasticsearch']['stack_name']</tt></td>
+    <td>String</td>
+    <td>Name of OpsWorks stack, used by AWS plugin to find other hosts of cluster</td>
+    <td><tt>empty</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['elasticsearch']['instance_count']</tt></td>
+    <td>String</td>
+    <td>Number of hosts in cluster, used for host count and min master count</td>
+    <td><tt>empty</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['enable_kibana']</tt></td>
+    <td>Boolean/String</td>
+    <td>Install kibana (and logstash), also add vhost to nginx for kibana.*</td>
+    <td><tt>empty</tt></td>
   </tr>
 </table>
 
 ## Usage
 
-### elasticsearch-opsworks::default
+### elasticsearch_opsworks::default
 
-Include `elasticsearch-opsworks` in your node's `run_list`:
+Include `elasticsearch_opsworks` in your node's `run_list`:
 
 ```json
 {
   "run_list": [
-    "recipe[elasticsearch-opsworks::default]"
+    "recipe[elasticsearch_opsworks::default]"
   ]
 }
 ```
 
 ## License and Authors
 
-Author:: YOUR_NAME (<YOUR_EMAIL>)
+Author:: Edwin Hermans (<edwin@madtech.cx>)
