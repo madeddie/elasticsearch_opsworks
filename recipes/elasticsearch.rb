@@ -7,13 +7,18 @@ include_recipe 'apt'
 include_recipe 'java::default'
 
 elasticsearch_user 'elasticsearch'
-elasticsearch_install 'elasticsearch'
+
+elasticsearch_install 'elasticsearch' do
+  type node['elasticsearch']['install_type'].to_sym
+end
+
 elasticsearch_configure 'elasticsearch' do
-  path_data package: '/mnt/elasticsearch-data'
+  path_data tarball: '/mnt/elasticsearch-data'
   configuration(
     'bootstrap.mlockall'                      => true,
     'action.disable_delete_all_indices'       => true,
     'network.host'                            => '0.0.0.0',
+    'network.publish_host'                     => '_ec2_',
     'routing.allocation.awareness.attributes' => 'aws_availability_zone',
     'discovery.zen.ping.multicast.enabled'    => false,
     'discovery.type'                          => 'ec2',
@@ -21,10 +26,9 @@ elasticsearch_configure 'elasticsearch' do
     'cloud.node.auto_attributes'              => true,
     'cloud.aws.region'                        => node['ec2']['placement_availability_zone'].chop,
     'cluster.name'                            => node['elasticsearch']['cluster_name'],
-    'discovery.ec2.tag.opsworks:stack'        => node['elasticsearch']['stack_name'],
-    'discovery.zen.minimum_master_nodes'      => node['elasticsearch']['instance_count'],
-    'gateway.expected_nodes'                  => node['elasticsearch']['instance_count']
-
+    'node.name'                               => "#{node['hostname']}.#{node['lgi']['stack_name']}.#{node['lgi']['domain_name']}",
+    'discovery.ec2.tag.opsworks:stack'        => node['lgi']['stack_name'],
+    'discovery.zen.minimum_master_nodes'      => "#{node['elasticsearch']['instance_count'].to_i / 2 + 1}"
   )
 end
 

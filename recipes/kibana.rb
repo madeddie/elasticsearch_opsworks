@@ -3,10 +3,7 @@
 # Recipe:: kibana
 #
 
-# Start docker service
-docker_service 'default' do
-  action [:create, :start]
-end
+include_recipe 'elasticsearch_opsworks::docker'
 
 # Pull specific tag of image
 docker_image 'kibana' do
@@ -23,6 +20,7 @@ docker_container 'kibana' do
   repo node['kibana_image']
   tag node['kibana_version']
   detach true
+  kill_after 30
   port '5601:5601'
   env 'ELASTICSEARCH_URL=http://172.17.0.1:9200'
   action :run

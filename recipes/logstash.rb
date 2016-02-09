@@ -3,10 +3,7 @@
 # Recipe:: logstash
 #
 
-# Start docker service
-docker_service 'default' do
-  action [:create, :start]
-end
+include_recipe 'elasticsearch_opsworks::docker'
 
 # Pull specific tag of image
 docker_image 'logstash' do
