@@ -14,6 +14,7 @@ end
 
 elasticsearch_configure 'elasticsearch' do
   path_data tarball: '/mnt/elasticsearch-data'
+
   configuration(
     'bootstrap.mlockall'                      => true,
     'action.disable_delete_all_indices'       => true,
@@ -28,7 +29,7 @@ elasticsearch_configure 'elasticsearch' do
     'cluster.name'                            => node['elasticsearch']['cluster_name'],
     'node.name'                               => "#{node['hostname']}.#{node['lgi']['stack_name']}.#{node['lgi']['domain_name']}",
     'discovery.ec2.tag.opsworks:stack'        => node['lgi']['stack_name'],
-    'discovery.zen.minimum_master_nodes'      => "#{node['elasticsearch']['instance_count'].to_i / 2 + 1}"
+    'discovery.zen.minimum_master_nodes'      => node['elasticsearch']['instance_count'].to_i / 2 + 1
   )
 end
 
