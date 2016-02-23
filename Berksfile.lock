@@ -30,7 +30,7 @@ GRAPH
     ark (>= 0.0.0)
     chef-sugar (>= 0.0.0)
     yum (>= 0.0.0)
-  elasticsearch_opsworks (0.3.1)
+  elasticsearch_opsworks (0.3.2)
     apt (~> 2.9.2)
     apt-docker (~> 0.3.0)
     docker (~> 2.0)
