@@ -19,7 +19,7 @@ elasticsearch_configure 'elasticsearch' do
     'bootstrap.mlockall'                      => true,
     'action.disable_delete_all_indices'       => true,
     'network.host'                            => '0.0.0.0',
-    'network.publish_host'                     => '_ec2_',
+    'network.publish_host'                    => '_ec2_',
     'routing.allocation.awareness.attributes' => 'aws_availability_zone',
     'discovery.zen.ping.multicast.enabled'    => false,
     'discovery.type'                          => 'ec2',

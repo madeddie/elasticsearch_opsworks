@@ -4,7 +4,7 @@ maintainer_email 'edwin@madtech.cx'
 license 'All rights reserved'
 description 'Installs/Configures elasticsearch-opsworks'
 long_description 'Installs/Configures elasticsearch-opsworks'
-version '0.3.2'
+version '0.3.3'
 
 depends 'apt', '~> 2.9.2'
 depends 'apt-docker', '~> 0.3.0'
