@@ -3,7 +3,7 @@ DEPENDENCIES
     path: .
     metadata: true
   monitor
-    git: https://github.com/LibertyGlobal/sensu-opsworks.git
+    git: https://github.com/LibertyGlobal/sensu_opsworks.git
     revision: 18c01b53c8d7227409d646681255dc3aae038cca
 
 GRAPH
