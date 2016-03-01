@@ -7,7 +7,7 @@ cvc = Chef::VersionConstraint
 # Recipe Name:: elasticsearch_opsworks::elasticsearch
 #
 
-default['elasticsearch']['version'] = '1.7.3'
+default['elasticsearch']['version'] = '1.7.5'
 default['elasticsearch']['install_type'] = 'tarball'
 
 es_version = node['elasticsearch']['version']
@@ -40,8 +40,8 @@ default['elasticsearch']['plugins'] = es_plugins
 
 default['java']['jdk_version'] = '8'
 default['java']['install_flavor'] = 'oracle'
-default['java']['jdk']['8']['x86_64']['url'] = 'https://s3-eu-west-1.amazonaws.com/jvm-registry/jdk-8u71-linux-x64.tar.gz'
-default['java']['jdk']['8']['x86_64']['checksum'] = '9bdb947fccf31e6ad644b7c1e3c658291facf819e4560a856e4d93bd686e58a2'
+default['java']['jdk']['8']['x86_64']['url'] = 'https://s3-eu-west-1.amazonaws.com/jvm-registry/jdk-8u73-linux-x64.tar.gz'
+default['java']['jdk']['8']['x86_64']['checksum'] = '46a8149efaf9d87a147b244e503f1d7791ec8abbc35a5011c99ed909edb2e3e6'
 default['java']['oracle']['accept_oracle_download_terms'] = true
 
 #
@@ -77,7 +77,7 @@ default['sensu']['rabbitmq']['host'] = "sensu.#{node['lgi']['domain_name']}"
 default['monitor']['client'] = "#{node['hostname']}.#{node['lgi']['stack_name']}"
 default['monitor']['additional_plugins'] = {
   'sensu-plugins-docker'        => '0.0.4',
-  'sensu-plugins-elasticsearch' => '0.4.2',
+  'sensu-plugins-elasticsearch' => '0.4.3',
   'sensu-plugins-java'          => '0.0.3' # don't forget to update the sudo_commands down below and sensu.rb recipe
 }
 default['monitor']['subscriptions'] = %w(system elasticsearch)
