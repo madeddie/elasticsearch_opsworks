@@ -21,7 +21,7 @@ Tested on:
     <td><tt>['elasticsearch']['version']</tt></td>
     <td>String</td>
     <td>ElasticSearch version</td>
-    <td><tt>1.7.3</tt></td>
+    <td><tt>1.7.5</tt></td>
   </tr>
   <tr>
     <td><tt>['elasticsearch']['cluster_name']</tt></td>
@@ -29,22 +29,34 @@ Tested on:
     <td>Name of ElasticSearch cluster</td>
     <td><tt>empty</tt></td>
   </tr>
-  <tr>
-    <td><tt>['elasticsearch']['stack_name']</tt></td>
-    <td>String</td>
-    <td>Name of OpsWorks stack, used by AWS plugin to find other hosts of cluster</td>
-    <td><tt>empty</tt></td>
-  </tr>
-  <tr>
+ <tr>
     <td><tt>['elasticsearch']['instance_count']</tt></td>
     <td>String</td>
     <td>Number of hosts in cluster, used for host count and min master count</td>
     <td><tt>empty</tt></td>
   </tr>
   <tr>
+    <td><tt>['lgi']['domain_name']</tt></td>
+    <td>String</td>
+    <td>Toplevel domain of CF stack</td>
+    <td><tt>empty</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['lgi']['stack_name']</tt></td>
+    <td>String</td>
+    <td>Name of OpsWorks stack, used by AWS plugin to find other hosts of cluster</td>
+    <td><tt>empty</tt></td>
+  </tr>
+  <tr>
     <td><tt>['enable_kibana']</tt></td>
     <td>Boolean/String</td>
-    <td>Install kibana (and logstash), also add vhost to nginx for kibana.*</td>
+    <td>Run kibana docker container, also add vhost to nginx for kibana.*</td>
+    <td><tt>empty</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['enable_logstash']</tt></td>
+    <td>Boolean/String</td>
+    <td>Run logstash docker container</td>
     <td><tt>empty</tt></td>
   </tr>
 </table>

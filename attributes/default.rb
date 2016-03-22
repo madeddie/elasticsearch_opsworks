@@ -88,4 +88,4 @@ default['monitor']['sudo_commands'] <<
 # Recipe Name:: docker::default
 #
 
-default['docker']['version'] = '1.10.2'
+default['docker']['version'] = '1.10.3'

@@ -23,7 +23,8 @@ docker_container 'kibana' do
   kill_after 30
   port '5601:5601'
   env 'ELASTICSEARCH_URL=http://172.17.0.1:9200'
-  action :run
+  restart_policy 'always'
+  action :run_if_missing
 end
 
 include_recipe 'nginx::default'

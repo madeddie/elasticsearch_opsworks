@@ -46,5 +46,6 @@ docker_container 'logstash' do
         hosts => ["172.17.0.1:9200"]
       }
     }\''
-  action :run
+  restart_policy 'always'
+  action :run_if_missing
 end
